@@ -1,0 +1,8 @@
+boto3
+fastapi
+uvicorn[standard]
+httpx
+pytest
+moto[dynamodb,sqs,events]
+ruff
+locust

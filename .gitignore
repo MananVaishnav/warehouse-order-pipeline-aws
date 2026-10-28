@@ -1,0 +1,25 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform.lock.hcl.bak
+terraform.tfvars
+tfplan
+crash.log
+
+# Build output
+*.zip
+build/
+
+# Secrets
+.env
+*.pem
