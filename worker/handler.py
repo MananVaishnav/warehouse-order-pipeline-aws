@@ -16,8 +16,8 @@ def handler(event, context):
     for record in event["Records"]:
         try:
             process(json.loads(record["body"]))
-        except Exception as e:
-            print(f"Failed message {record['messageId']}: {e}")
+        except Exception as e: # noqa: BLE001
+            print(f"Failed message {record['messageId']}: {type(e).__name__}: {e}")
             failures.append({"itemIdentifier": record["messageId"]})
     return {"batchItemFailures": failures}
 

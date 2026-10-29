@@ -4,7 +4,7 @@ import time
 import uuid
 
 import boto3
-from botocore.exceptions import ClientError
+from botocore.exceptions import BotoCoreError, ClientError
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
 
@@ -67,6 +67,6 @@ def get_order(order_id: str):
 def health():
     try:
         ddb.describe_table(TableName=ORDERS_TABLE)
-    except Exception:
-        raise HTTPException(status_code=503, detail="Cannot reach DynamoDB")
+    except (ClientError, BotoCoreError):
+        raise HTTPException(status_code=503, detail="Cannot reach DynamoDB") from None
     return {"status": "ok"}
